@@ -1,34 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Redirecting...</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display jarId Query Parameter</title>
     <script>
-        // Function to extract query parameters from the URL
-        function getParameterByName(name, url) {
-            if (!url) url = window.location.href;
-            name = name.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-        }
+        document.addEventListener("DOMContentLoaded", function() {
+            // Function to get the value of a query parameter from the URL
+            function getQueryParam(param) {
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                return urlParams.get(param);
+            }
 
-        // Get the jarId parameter from the URL
-        var jarId = getParameterByName('jarId');
+            // Get the value of the jarId parameter
+            const jarId = getQueryParam('jarId');
 
-        // Redirect to the deeplink with the extracted jarId parameter
-        var redirectURL = "dinary://jar.details?jarId=" + jarId;
-        window.location.href = redirectURL;
+            // Display the value in the body of the HTML document
+            document.getElementById('jarIdDisplay').innerText = jarId;
+        });
     </script>
 </head>
-    <body>
-        <!-- This is where you can put your content -->
-        <!-- For example, you can display the jarId value here -->
-        <p>Jar ID: <span id="jarIdDisplay"></span></p>
-        <!-- You can use JavaScript to populate the span with the jarId value -->
-        <script>
-            document.getElementById("jarIdDisplay").innerText = jarId;
-        </script>
-    </body>
+<body>
+    <h1>Displaying jarId Query Parameter</h1>
+    <p>jarId: <span id="jarIdDisplay"></span></p>
+</body>
 </html>
