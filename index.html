@@ -15,14 +15,10 @@
 
             // Get the value of the jarId parameter
             const jarId = getQueryParam('jarId');
-
-            // Display the value in the body of the HTML document
-            document.getElementById('jarIdDisplay').innerText = jarId;
+             var redirectURL = "dinary://jar.details?jarId=" + jarId;
+                window.location.href = redirectURL;
         });
     </script>
 </head>
-<body>
-    <h1>Displaying jarId Query Parameter</h1>
-    <p>jarId: <span id="jarIdDisplay"></span></p>
-</body>
+
 </html>
